@@ -43,17 +43,17 @@ Decision rule: an area is answered only if it beats both other areas in the per-
 | Q | Topic | Status | Confidence | Expected consensus |
 |---|---|---|---|---|
 | 1 | Lowest firing rate | done: area 2 | 6 | 6 |
-| 2 | Highest broadband LFP power (1–100 Hz) | done: area 3 | 8 | 8 |
+| 2 | Highest broadband LFP power (1–100 Hz) | done: area 3 | 9 | 8 |
 | 3 | Ripple density | done: area 3 (ripple band mostly filtered out; see notebook) | 5 | 4 |
 | 4 | Pairwise spike interactions at 100 ms | done: no differences (area 2 > 1, but not > 3 after correction) | 4 | 3 |
 | 5 | Undirected functional connectivity | done: 1<->3 (LFP wPLI; spikes favour 1<->2) | 4 | 3 |
 | 6 | Directed functional connectivity | done: not enough data / no differences | 3 | 2 |
 | 7 | Fast-spiking interneuron density | done: no differences (area 3 > 1, but not > 2 after correction) | 4 | 3 |
-| 8 | Spike phase-locking to own LFP, 4–10 Hz | done: area 3 | 8 | 7 |
+| 8 | Spike phase-locking to own LFP, 4–10 Hz | done: area 3 | 9 | 7 |
 | 9 | E/I ratio | done: area 1 (1/f exponent proxy) | 5 | 4 |
 | 10 | Shortest intrinsic timescale (baseline) | done: no differences (area 3 < 2, but not < 1 after correction) | 4 | 3 |
 | 11 | Information about variable A | done: no differences (equal-size decoding) | 5 | 3 |
 | 12 | Trial segment where variable C is best decoded | done: stim -> outcome | 7 | 6 |
 | 13 | Dimensionality (stim → outcome) | done: area 1 | 6 | 5 |
 | 14 | Lowest modularity | done: no differences | 4 | 3 |
-| 15 | Signal complexity (stim → trial end) | done: area 1 (spectrum-driven) | 6 | 4 |
+| 15 | Signal complexity (stim → trial end) | done: area 1 (spectrum-driven) | 7 | 4 |
