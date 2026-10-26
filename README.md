@@ -1,5 +1,21 @@
 # con2phys analysis
 
+My analysis code and questionnaire answers for [con2phys](https://mchini.github.io/con2phys/), a dataset of
+Neuropixels recordings (spikes and LFP) from three brain areas in 18 mice performing a task.
+
+- Each of the 15 questionnaire questions has its own notebook in `notebooks/`, with the analysis, figures, statistics,
+  robustness checks and the recorded answer. `notebooks/00_exploration.ipynb` walks through one recording in detail.
+- Shared code is in the `c2p/` package: data loading, statistics, and one module per question.
+- The submitted answers are in `docs/questionnaire_filled.pdf` (and `results/answers.json`); the table at the end of
+  this README summarises them with my confidence and expected-consensus ratings.
+- Statistics treat mice as the unit of replication: one value per mouse and area (paired Friedman and Wilcoxon tests,
+  bootstrap CIs over mice) or models with units nested in mice. Pairwise tests are Bonferroni-corrected, and an area is
+  only given as the answer if it differs significantly from both other areas.
+
+The dataset itself is not included (see *Setup and reproduction*). Code is released under the MIT License (`LICENSE`).
+
+## Repository layout
+
 ```
 py-files/<mouse>/   raw data, one folder per mouse (1-18); never written to
 c2p/                shared code
