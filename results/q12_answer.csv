@@ -1,0 +1,4 @@
+,Mean,95% C.I.,Units
+S1 trial start→stim,0.592,"[0.577, 0.606]",ROC AUC
+S2 stim→outcome,0.835,"[0.802, 0.866]",ROC AUC
+S3 outcome→trial end,0.733,"[0.689, 0.777]",ROC AUC

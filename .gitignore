@@ -1,0 +1,10 @@
+# Dataset: 32 GB, password-protected download, not redistributed. Download it into py-files/ (see README).
+py-files/
+
+# Large regenerable cache (530 MB; recreated by c2p.q03_ripples.compute(force=True), ~20 min)
+results/q03_events.csv
+
+# Python / Jupyter clutter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

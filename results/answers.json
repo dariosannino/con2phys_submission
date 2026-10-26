@@ -1,0 +1,353 @@
+{
+  "1": {
+    "choice": 1,
+    "rows": [
+      [
+        "7.78",
+        "[6.71, 8.89]",
+        "Hz (spikes/s)"
+      ],
+      [
+        "5.73",
+        "[4.58, 6.84]",
+        "Hz (spikes/s)"
+      ],
+      [
+        "6.77",
+        "[5.86, 7.81]",
+        "Hz (spikes/s)"
+      ]
+    ],
+    "explanation": "I computed each unit's firing rate as the number of its spikes within the recording divided by the recording length (taken from the LFP), including all 1449 units from the 18 mice; the 1724 spikes falling outside the recording were ignored. Because units recorded in the same mouse are not independent, the mean of each area is reported with a hierarchical bootstrap CI, in which mice and then units within each mouse were resampled 10,000 times. Area 2 fires less than area 1 by 2.05 Hz (95% CI 0.80 to 3.53). Its difference from area 3 (1.04 Hz) is less clear on the arithmetic mean (CI -0.40 to 2.63), because firing rates are strongly skewed and a few very fast units dominate it. I therefore also fitted a linear mixed model to log10 firing rate, with a random intercept and random area effects for each mouse: area 3 fires 1.34 times faster than area 2 (p = 0.031) and area 1 1.85 times faster (p < 0.001). Area 2 is also the lowest within individual animals, being below area 3 in 14 of 18 mice (Wilcoxon p = 0.008) and below area 1 in 13 (p = 0.008), and it stays lowest throughout the recording. I therefore conclude that area 2 has the lowest firing rate. Pairwise p-values are Bonferroni-corrected for the three comparisons."
+  },
+  "2": {
+    "choice": 2,
+    "rows": [
+      [
+        "2438",
+        "[1489, 4068]",
+        "µV²"
+      ],
+      [
+        "11431",
+        "[9156, 14104]",
+        "µV²"
+      ],
+      [
+        "60616",
+        "[54595, 67208]",
+        "µV²"
+      ]
+    ],
+    "explanation": "For every LFP channel I estimated the power spectrum over the whole recording with Welch's method (2-s Hann windows, 50% overlap) and integrated it between 1 and 100 Hz, which gives the variance of the signal in that band in µV². All 1862 channels from the 18 mice were used. Because channels recorded in the same mouse are not independent, the mean of each area is reported with a hierarchical bootstrap CI, in which mice and then channels within each mouse were resampled 10,000 times. Area 3 has by far the highest power, about 5 times that of area 2 and 25 times that of area 1, and it is the highest in every one of the 18 mice (Wilcoxon p < 0.001 against each other area). A linear mixed model on log10 power with random area effects per mouse gives the same result (area 3 / area 2 = 4.4x, area 3 / area 1 = 32x, both p < 0.001). The ranking does not change when the narrow mains-noise peaks at 50 and 60 Hz (and smaller ones at 52–53 and 66–69 Hz) are removed, when the spectrum is averaged with the median to discount artifacts, when the 13 outlier channels are excluded, or when every mouse is weighted equally. Pairwise p-values are Bonferroni-corrected for the three comparisons."
+  },
+  "3": {
+    "choice": 2,
+    "rows": [
+      [
+        "1.83",
+        "[0.69, 3.33]",
+        "events/min"
+      ],
+      [
+        "1.68",
+        "[0.66, 3.22]",
+        "events/min"
+      ],
+      [
+        "9.21",
+        "[7.23, 11.35]",
+        "events/min"
+      ]
+    ],
+    "explanation": "The LFP is sampled at 500 Hz and its spectrum indicates low-pass filtering during preprocessing (not documented): power drops 15-100x from 100 to 140 Hz, against ~2x expected from the 1/f trend, and above ~150 Hz only a flat noise floor remains, identical on all channels. I therefore detected ripples in 110–180 Hz, the lowest part of the ripple band, on every channel over the whole recording (Hilbert envelope, robust z-score, events above z = 2 lasting 15–300 ms with a peak above z = 5). Most candidates occurred simultaneously in all three areas and were locked to stimulus and outcome, so I treated them as movement/EMG artifacts and kept only local events, during which the other two areas showed no high-frequency activity. Density is the rate of local events on each area's best channel, giving one value per mouse and area, with a bootstrap CI over mice. Area 3 had the highest density in all 18 mice (9.2 vs 1.8 and 1.7 events/min; Wilcoxon p < 0.001 against each other area). Only in area 3 did the events show the hallmarks of sharp-wave ripples: a laminar depth profile, a large negative sharp wave (-561 µV on average) and a 2.1-fold increase of local firing. The result holds with the median channel and with other locality and amplitude thresholds. Because most of the ripple band was filtered out, absolute densities are probably underestimated. Pairwise p-values are Bonferroni-corrected for the three comparisons."
+  },
+  "4": {
+    "choice": 3,
+    "rows": [
+      [
+        "0.069",
+        "[0.058, 0.080]",
+        "dimensionless"
+      ],
+      [
+        "0.125",
+        "[0.092, 0.162]",
+        "dimensionless"
+      ],
+      [
+        "0.076",
+        "[0.061, 0.092]",
+        "dimensionless"
+      ]
+    ],
+    "explanation": "For every pair of units recorded in the same area (25,299 pairs) I computed the spike time tiling coefficient (STTC) with dt = 100 ms, which measures how often the spikes of two units fall within 100 ms of each other beyond chance and is less sensitive to firing rate than count correlations. Circularly shifting one spike train brought STTC to about 0, confirming that the values reflect genuine co-firing. Because the number of pairs grows with the square of the number of units, a pooled mean would be dominated by a few mice, so I averaged pairs within each mouse and area and report the mean over the 18 mice with a bootstrap CI. Area 2 had the highest mean STTC (0.125 vs 0.069 in area 1 and 0.076 in area 3) and exceeded area 1 (paired Wilcoxon p = 0.042), but not area 3: it was higher in only 12 of 18 mice (p = 0.22), a linear mixed model on all pairs with random area effects per mouse gave p = 0.076, and pooling all pairs did not separate the areas. Pairwise p-values are Bonferroni-corrected for the three comparisons. Because no area was reliably above both others, I answer not enough data / no differences."
+  },
+  "meta": {
+    "confidence": {
+      "1": 6,
+      "2": 8,
+      "3": 5,
+      "4": 4,
+      "5": 4,
+      "6": 3,
+      "7": 4,
+      "8": 8,
+      "9": 5,
+      "10": 4,
+      "11": 5,
+      "12": 7,
+      "13": 6,
+      "14": 4,
+      "15": 6
+    },
+    "consensus": {
+      "1": 6,
+      "2": 8,
+      "3": 4,
+      "4": 3,
+      "5": 3,
+      "6": 2,
+      "7": 3,
+      "8": 7,
+      "9": 4,
+      "10": 3,
+      "11": 3,
+      "12": 6,
+      "13": 5,
+      "14": 3,
+      "15": 4
+    }
+  },
+  "5": {
+    "choice": 1,
+    "rows": [
+      [
+        "0.128",
+        "[0.082, 0.191]",
+        "wPLI (unitless)"
+      ],
+      [
+        "0.267",
+        "[0.209, 0.332]",
+        "wPLI (unitless)"
+      ],
+      [
+        "0.173",
+        "[0.135, 0.224]",
+        "wPLI (unitless)"
+      ]
+    ],
+    "explanation": "I measured LFP connectivity between every pair of areas over the whole recording. Because all channels share an external reference and large transients (movement/EMG) appear in all areas at the same instant, I used local bipolar derivations (6 per area, spread over depth) and the weighted phase lag index (wPLI), which ignores zero-lag coupling. wPLI was computed from 2-s segments at each frequency between all 36 channel pairs of each area pair and averaged over channel pairs, giving one wPLI spectrum per mouse and pair. Coupling peaked in the theta band, so the table reports theta wPLI (4–8 Hz) with bootstrap CIs over mice: areas 1 and 3 were the most strongly connected (0.267 vs 0.128 for 1⇔2 and 0.173 for 2⇔3), in 16 of 18 mice (Friedman p < 0.001; Wilcoxon p <= 0.001 against each other pair). The ranking was the same when wPLI was averaged separately in the alpha, beta and gamma bands and over 1–100 Hz (mains and equipment lines excluded; 1⇔3 strongest in 13–16 of 18 mice), and coherence agreed. Spike co-firing between units of different areas (STTC, 100 ms) was instead strongest for 1⇔2 (15 of 18 mice), so the answer depends on the signal; I report LFP-based connectivity, the usual measure between areas. Pairwise p-values are Bonferroni-corrected for the three comparisons."
+  },
+  "6": {
+    "choice": 3,
+    "rows": [
+      [
+        "-0.0106",
+        "[-0.0373, +0.0053]",
+        "PSI (unitless)"
+      ],
+      [
+        "-0.0063",
+        "[-0.0105, -0.0014]",
+        "PSI (unitless)"
+      ],
+      [
+        "+0.0047",
+        "[-0.0128, +0.0283]",
+        "PSI (unitless)"
+      ]
+    ],
+    "explanation": "I estimated the direction of coupling on the same bipolar LFP signals with the phase slope index (PSI, insensitive to zero-lag mixing) over 1–100 Hz and separately in theta, beta and gamma, and with Granger causality on the LFP (250 Hz, 100 ms of history) and on population spike rates (10-ms bins). Values are per mouse, averaged over channel pairs; the table gives the mean signed PSI over mice with a bootstrap CI, positive meaning the stated direction. None of the three offered directions was consistently supported: PSI for 1⇒2 and 3⇒1 was close to zero with signs split across mice (10 and 8 of 18 positive), and 3⇒2 was consistently reversed (area 2 leads area 3: PSI in 14 of 18 mice, spike-rate Granger 2⇒3 > 3⇒2 in 16 of 18). No offered direction was stronger than its reverse in either Granger analysis, and the raw Granger magnitudes ranked the directions differently for LFP (3⇒1) and spikes (1⇒2). Because the directed measures disagree and none supports one of the offered directions, I answer not enough data / no differences."
+  },
+  "7": {
+    "choice": 3,
+    "rows": [
+      [
+        "4.7",
+        "[1.2, 10.0]",
+        "% of units"
+      ],
+      [
+        "17.9",
+        "[12.5, 24.2]",
+        "% of units"
+      ],
+      [
+        "23.9",
+        "[17.6, 31.0]",
+        "% of units"
+      ]
+    ],
+    "explanation": "Putative fast-spiking (FS) interneurons were identified from the average spike waveform. The trough-to-peak time of all units was bimodal, with a narrow group (FS-like) and a broad group (pyramidal-like); units below the dip of this distribution (0.34 ms) were classified as FS. Units with inverted (positive-dominant) waveforms (43 of 1449) were excluded because their trough-to-peak time is not interpretable. Density is the percentage of each area's units classified as FS, with a hierarchical bootstrap CI (mice, then units). Area 3 had the highest FS fraction (24% vs 18% in area 2 and 5% in area 1) and was highest in 14 of 18 mice. It exceeded area 1 (paired Wilcoxon p = 0.013) but not area 2 (p = 0.17); with fixed thresholds (0.30 and 0.40 ms), a Gaussian mixture on trough-to-peak and a criterion requiring both a narrow spike and an above-median firing rate, area 3 stayed numerically highest (5 of 5 definitions) but exceeded area 2 significantly in only 2 of them. Pairwise p-values are Bonferroni-corrected for the three comparisons. Because no area was reliably above both others, I answer not enough data / no differences."
+  },
+  "8": {
+    "choice": 2,
+    "rows": [
+      [
+        "0.0002",
+        "[0.0002, 0.0003]",
+        "PPC (unitless)"
+      ],
+      [
+        "0.0009",
+        "[0.0005, 0.0013]",
+        "PPC (unitless)"
+      ],
+      [
+        "0.0494",
+        "[0.0364, 0.0637]",
+        "PPC (unitless)"
+      ]
+    ],
+    "explanation": "For each area I took the LFP channel with the strongest 4–10 Hz power, band-passed it at 4–10 Hz (zero-phase Butterworth) and obtained its instantaneous phase with the Hilbert transform. Every spike of every unit in that area was assigned the phase at its time, over the whole recording. Locking strength was measured with the pairwise phase consistency (PPC), which unlike the phase-locking value is not inflated by small spike counts; all 1449 units were included. Means are over units with a hierarchical bootstrap CI (mice, then units). Area 3 showed by far the strongest locking (PPC 0.0494 vs 0.0009 in area 2 and 0.0002 in area 1), in all 18 of 18 mice (Friedman p < 0.001, Wilcoxon p < 0.001 against each area, mixed model p < 0.001), and 92% of its units were significantly locked (Rayleigh p < 0.05). The result was the same with a bipolar signal (excluding theta carried by the shared reference), with the middle channel of each area, during strong-theta periods only, and with the phase-locking value on 500 spikes per unit. Pairwise p-values are Bonferroni-corrected for the three comparisons."
+  },
+  "9": {
+    "choice": 0,
+    "rows": [
+      [
+        "0.93",
+        "[0.82, 1.05]",
+        "1/f exponent"
+      ],
+      [
+        "1.67",
+        "[1.52, 1.82]",
+        "1/f exponent"
+      ],
+      [
+        "1.36",
+        "[1.28, 1.44]",
+        "1/f exponent"
+      ]
+    ],
+    "explanation": "As a proxy for the E/I ratio I used the aperiodic exponent of the LFP spectrum (Gao et al., 2017): inhibitory currents are slower than excitatory ones, so more inhibition steepens the spectrum, and a lower exponent indicates higher E/I. For every channel I computed the power spectrum over the whole recording (Welch, 2-s windows) and fitted a line to log power against log frequency over 30–50 Hz, excluding the 50 Hz mains line; the exponent is minus the slope. Means are over channels with a hierarchical bootstrap CI (mice, then channels). Area 1 had the flattest spectrum, i.e. the highest E/I (exponent 0.93 vs 1.36 in area 3 and 1.67 in area 2), in all 18 of 18 mice (Friedman p < 0.001, Wilcoxon p < 0.001 against each area, mixed model p < 0.001), and with 20–40 and 40–60 Hz fits. Because area 1 has the lowest LFP power, shared broadband noise could flatten its spectrum; with bipolar signals and median spectra, which remove shared noise and transients, area 1 was still the flattest (13 of 18 mice). Consistently, area 1 also had the smallest share of spikes from putative fast-spiking interneurons. Pairwise p-values are Bonferroni-corrected for the three comparisons."
+  },
+  "10": {
+    "choice": 3,
+    "rows": [
+      [
+        "280",
+        "[181, 449]",
+        "ms"
+      ],
+      [
+        "837",
+        "[605, 1093]",
+        "ms"
+      ],
+      [
+        "159",
+        "[133, 187]",
+        "ms"
+      ]
+    ],
+    "explanation": "Intrinsic timescales were estimated as in Murray et al. (2014). The baseline was the 1 s before stimulus onset, in trials where that second started after the previous trial had ended. Spikes were counted in 50-ms bins, the autocorrelation between bins was computed across trials and averaged by lag, and an exponential decay A(exp(-lag/tau) + B) was fitted to the mean autocorrelation of each mouse and area (units with baseline rate >= 1 Hz; median fit R2 = 0.94). The table gives the mean tau over mice with a bootstrap CI; area 2 contains several taus longer than the window, which inflate its mean. Area 3 had the shortest median timescale (148 ms vs 198 ms in area 1 and 692 ms in area 2) and was shorter than area 2 in 18 of 18 mice (p < 0.001), but its difference from area 1 was not significant (13 of 18 mice, paired Wilcoxon p = 0.055). It was also not significant with an inter-trial-interval baseline or with only units above 2 Hz; only separate fits per unit separated them (p = 0.005). Pairwise p-values are Bonferroni-corrected for the three comparisons. Because no area was reliably shorter than both others, I answer not enough data / no differences."
+  },
+  "11": {
+    "choice": 3,
+    "rows": [
+      [
+        "0.683",
+        "[0.650, 0.721]",
+        "ROC AUC"
+      ],
+      [
+        "0.687",
+        "[0.645, 0.736]",
+        "ROC AUC"
+      ],
+      [
+        "0.668",
+        "[0.631, 0.712]",
+        "ROC AUC"
+      ]
+    ],
+    "explanation": "I decoded variable A trial by trial from each area's spikes with cross-validated logistic regression (5 folds), scored by ROC AUC (chance 0.5; insensitive to A being unbalanced). Inter-trial intervals were excluded. Because the informative segment is not known, the main decoder used spike counts in three fixed-length windows together: 0.4 s before the stimulus, 0.2 s after the stimulus and 1 s after the outcome. Fixed lengths were needed because trials with A = 0 have a 1-s longer post-outcome period, so segment-averaged rates would differ for that reason alone. To compare areas fairly each decoder used the same number of units (5, the size of the smallest area; 20 random draws), and values are means over mice with a bootstrap CI. A was decodable only after the outcome and equally well in all areas (AUC 0.683, 0.687, 0.668; shuffled labels 0.50; Friedman p = 0.80), and the same held with 10 and 15 units per area, for the post-outcome window alone and for the best 200-ms bin. Only full populations favoured area 1 (AUC 0.82 vs 0.79 and 0.73), which reflects its larger number of recorded units rather than more information."
+  },
+  "12": {
+    "choice": 1,
+    "rows": [
+      [
+        "0.592",
+        "[0.577, 0.606]",
+        "ROC AUC"
+      ],
+      [
+        "0.835",
+        "[0.802, 0.866]",
+        "ROC AUC"
+      ],
+      [
+        "0.733",
+        "[0.689, 0.777]",
+        "ROC AUC"
+      ]
+    ],
+    "explanation": "In the trial table A = 1 exactly when C matches B, so C is the choice (B the stimulus, A correctness); the rare C = 1 trials (no choice) were excluded. For each mouse I decoded C (0 vs 2) from all units with cross-validated logistic regression and ROC AUC (chance 0.5), separately for each segment, using each unit's firing rate over the whole segment. Values are means over mice with bootstrap CIs. C was decoded best during stimulus -> outcome (AUC 0.835 vs 0.733 after the outcome and 0.592 before the stimulus), in 14 of 18 mice (Friedman p < 0.001; Wilcoxon p = 0.005 vs outcome -> trial end). Because segments differ in length, I repeated the analysis with equal 0.2-s windows at the start and end of every segment: the ranking was the same (AUC 0.848, 0.811, 0.568), although the margin over the post-outcome segment was smaller (p = 0.162), and the same ranking held in every area separately. Time-resolved decoding peaked in the last 200 ms before the outcome (AUC 0.87) and declined after it. Shuffled labels gave 0.50. Pairwise p-values are Bonferroni-corrected for the three comparisons."
+  },
+  "13": {
+    "choice": 0,
+    "rows": [
+      [
+        "4.927",
+        "[4.903, 4.945]",
+        "PR (max 5)"
+      ],
+      [
+        "4.793",
+        "[4.692, 4.868]",
+        "PR (max 5)"
+      ],
+      [
+        "4.690",
+        "[4.612, 4.761]",
+        "PR (max 5)"
+      ]
+    ],
+    "explanation": "Stimulus -> outcome segments were cut into 50-ms bins and the bins of all trials were concatenated, giving a bins x units matrix of spike counts per mouse; trials with segments longer than 2 s (a few last minutes, i.e. pauses) were excluded. Dimensionality was measured as the participation ratio, PR = (sum of eigenvalues)^2 / (sum of squared eigenvalues), of the units' correlation matrix; PR ranges from 1 (all units co-vary) to the number of units (independent units). Because PR is bounded by the number of units, each area used the same number of units (5, the smallest area; 200 random draws), and values are means over mice with a bootstrap CI. Area 1 had the highest dimensionality (PR 4.93 vs 4.79 in area 2 and 4.69 in area 3, maximum 5), in 15 of 18 mice (Friedman p < 0.001; Wilcoxon p <= 0.003 against each area). The same held with 10 units per area (13 mice; PR 9.73, 9.28, 8.44 of 10), with 20- and 100-ms bins, with the first 1 s of every segment or all time, with the covariance instead of the correlation matrix, and with the number of components explaining 80% of the variance (area 1 highest in 72-100% of mice across these variants). Area 1 units therefore fluctuate most independently, in line with their weaker pairwise correlations; this is not a noise effect, since area 1 also has the highest firing rates. Pairwise p-values are Bonferroni-corrected for the three comparisons."
+  },
+  "14": {
+    "choice": 3,
+    "rows": [
+      [
+        "0.130",
+        "[0.099, 0.162]",
+        "Newman Q"
+      ],
+      [
+        "0.163",
+        "[0.113, 0.216]",
+        "Newman Q"
+      ],
+      [
+        "0.234",
+        "[0.200, 0.267]",
+        "Newman Q"
+      ]
+    ],
+    "explanation": "For each area I built a functional network over the whole recording: units as nodes and pairwise spike time tiling coefficients (100 ms) as link weights, negative values set to 0. Modularity was Newman's Q of the best Louvain partition. The table gives Q of the full networks, mean over mice with a bootstrap CI over mice. Area 1 had the lowest raw Q (0.130 vs 0.163 in area 2 and 0.234 in area 3), lower than area 3 (Wilcoxon p = 0.002) but not than area 2 (p = 0.28). Because Q depends on network size and on the weight distribution, I compared each network with versions whose weights were shuffled among links, and repeated the analysis with equal-size subsamples (10 and 15 units), count-correlation links and binary networks of the strongest 20% of links. The shuffled networks reproduced the raw ranking, Q did not exceed the shuffled networks differently between areas (Friedman p = 0.85), and area 1 was never significantly lower than area 2. I therefore found no reliable difference in modularity between areas."
+  },
+  "15": {
+    "choice": 0,
+    "rows": [
+      [
+        "0.527",
+        "[0.505, 0.548]",
+        "LZc (normalised)"
+      ],
+      [
+        "0.415",
+        "[0.398, 0.432]",
+        "LZc (normalised)"
+      ],
+      [
+        "0.446",
+        "[0.428, 0.463]",
+        "LZc (normalised)"
+      ]
+    ],
+    "explanation": "I measured the Lempel-Ziv complexity (LZc) of the LFP, binarised at its median and normalised by n/log2(n). To avoid the dependence of LZc on signal length, every trial contributed the same window, the first 1 s after stimulus onset (always within stimulus -> trial end); 200 random trials per mouse and 6 channels per area spread over depth. Means are over channels with a hierarchical bootstrap CI (mice, then channels). Area 1 had the most complex signal (LZc 0.527 vs 0.415 in area 2 and 0.446 in area 3), highest in 18 of 18 mice (Friedman p < 0.001, Wilcoxon p < 0.001 against each area). The result was the same with bipolar (local) signals (15 of 18 mice) and with permutation entropy (18 of 18). Phase-randomised surrogates with identical power spectra reproduced this ranking, and so did IAAFT surrogates that also keep the distribution of signal values; LZc relative to either surrogate was not higher in area 1 than in the other areas, so area 1's higher complexity reflects its spectral content (flatter spectrum, with relatively more fast activity) rather than additional nonlinear temporal structure. Pairwise p-values are Bonferroni-corrected for the three comparisons."
+  }
+}

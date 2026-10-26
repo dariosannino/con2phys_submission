@@ -1,0 +1,22 @@
+# Conda environment used for all analyses (exact versions).
+# Create:   conda env create -f environment.yml
+# Kernel:   python -m ipykernel install --user --name con2phys --display-name con2phys
+name: con2phys
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13.7
+  - numpy=2.3.3
+  - scipy=1.16.1
+  - pandas=2.3.2
+  - matplotlib=3.10.6
+  - seaborn=0.13.2
+  - statsmodels=0.14.5
+  - scikit-learn=1.7.1
+  - networkx=3.7
+  - nbformat=5.10.4
+  - nbconvert=7.16.6
+  - ipykernel=6.30.1
+  - pip
+  - pip:
+      - pypdf==6.21.1
